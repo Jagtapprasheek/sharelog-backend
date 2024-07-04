@@ -1,5 +1,7 @@
 // const bcrypt = require('bcrypt');
-const User = require('../models/User.js');
+const {User} = require('../models/User.js');
+const {Chart} = require('../models/Chart.js');
+
 
 module.exports.loginController = async (req, res) =>{
     try{
