@@ -50,6 +50,50 @@ class UserService {
             throw error;  
         }
     }
+    static async findUserByGoogleClientId(googleClientId){
+        try {
+            const user = await User.findOne({ google_client_id: googleClientId });
+            return user;
+          } catch (error) {
+            console.error('Error finding user by Google Client ID:', error);
+            throw error;
+          }
+    }
+    static async getThemeById(googleClientId) {
+        try {
+            const user = await User.findOne({ google_client_id: googleClientId });
+    
+            if (!user) {
+                return ""; 
+            }
+    
+            const theme = user.theme;
+    
+            return theme;
+        } catch (error) {
+            return [];
+        }
+    }
+
+    static async getStrategiesByClientId(googleClientId) {
+        try {
+            // Find the user with the given google_client_id
+            const user = await User.findOne({ google_client_id: googleClientId });
+
+            if (!user) {
+                // console.log("User not found");
+                return []; // Return an empty array if user not found
+            }
+
+            // Access the Strategies field from the user document
+            const strategies = user.Strategies;
+
+            return strategies;
+        } catch (error) {
+            // console.error("Error fetching strategies:", error);
+            return []; // Return an empty array in case of error
+        }
+    }
 }
 
 module.exports = UserService;
