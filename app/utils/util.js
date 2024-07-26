@@ -122,7 +122,7 @@ module.exports.getChartData = (securityID, exchangeSeg, instru) => {
           method: 'POST',
           url: 'https://api.dhan.co/charts/intraday',
           headers: {
-              'access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzE5NTg4NzM5LCJ0b2tlbkNvbnN1bWVyVHlwZSI6IlNFTEYiLCJ3ZWJob29rVXJsIjoiIiwiZGhhbkNsaWVudElkIjoiMTEwMDY4NzY5NyJ9.0o5BxwhTsMlQuRq1BQ8l6hMsHvwu4lulPtIWBI4p2sQdpJz3nVFS-onqU6IRwsi49tKpLxPEvaaCFkt3mUK8iQ',
+              'access-token': process.env.DHAN_ACCESS_TOKEN,
               'Content-Type': 'application/json',
               Accept: 'application/json'
           },
@@ -174,7 +174,7 @@ module.exports.getAllPositions = () => {
           method: 'GET',
           url: 'https://api.dhan.co/positions',
           headers: {
-              'access-token': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpc3MiOiJkaGFuIiwicGFydG5lcklkIjoiIiwiZXhwIjoxNzE5NTg4NzM5LCJ0b2tlbkNvbnN1bWVyVHlwZSI6IlNFTEYiLCJ3ZWJob29rVXJsIjoiIiwiZGhhbkNsaWVudElkIjoiMTEwMDY4NzY5NyJ9.0o5BxwhTsMlQuRq1BQ8l6hMsHvwu4lulPtIWBI4p2sQdpJz3nVFS-onqU6IRwsi49tKpLxPEvaaCFkt3mUK8iQ',
+              'access-token': process.env.DHAN_ACCESS_TOKEN,
               Accept: 'application/json'
           }
       };

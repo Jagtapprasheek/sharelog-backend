@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
 const loginRoutes = require('./loginRoutes');
-const loginRoutes = require('./allRoutes');
+const userRoutes = require('./userRoutes');
+
+router.use('/auth', loginRoutes);
 
 router.use('/user', loginRoutes);
-
-router.use('/v1', loginRoutes);
 
 
 module.exports = router;
