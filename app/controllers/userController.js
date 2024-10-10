@@ -1,4 +1,5 @@
 // const bcrypt = require('bcrypt');
+const {OAuth2Client} = require('google-auth-library');
 const {User} = require('../models/User.js');
 const {Chart} = require('../models/Chart.js');
 const {Position} = require('../models/Position.js');
@@ -246,7 +247,7 @@ module.exports.getDashboardData = async (req, res) => {
         });
   
     }catch(error){
-        console.log(err);
+        console.log(error);
         return res.status(500).json({
             message : "Internal Server Error"
         })

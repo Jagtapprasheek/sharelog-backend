@@ -5,7 +5,7 @@ const userRoutes = require('./userRoutes');
 
 router.use('/auth', loginRoutes);
 
-router.use('/user', loginRoutes);
+router.use('/user', userRoutes);
 
 
 module.exports = router;
