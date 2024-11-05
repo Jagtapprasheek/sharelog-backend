@@ -1,15 +1,25 @@
 // const bcrypt = require('bcrypt');
-const {OAuth2Client} = require('google-auth-library');
-const {User} = require('../models/User.js');
-const {Chart} = require('../models/Chart.js');
-const {Position} = require('../models/Position.js');
-const {Calendar} = require('../models/Calendar.js');
-const { createUser } = require('../services/userService.js');
-const jwt = require('jsonwebtoken');
-const { getAllPositions, getChartData, addTenYears, calculateBrokerage, getEndDate, getFakeChartData, getLocalDayName, getLocalDate, getCurBalance, findCalendarEntryForToday, filterPositionsLastWeek } = require('../utils/util.js');
+import { User } from '../models/User.js';
+import { Chart } from '../models/Chart.js';
+import { Position } from '../models/Position.js';
+import { Calendar } from '../models/Calendar.js';
+import jwt from 'jsonwebtoken';
+import { 
+  getAllPositions, 
+  getChartData, 
+  addTenYears, 
+  calculateBrokerage, 
+  getEndDate, 
+  getFakeChartData, 
+  getLocalDayName, 
+  getLocalDate, 
+  getCurBalance, 
+  findCalendarEntryForToday, 
+  filterPositionsLastWeek 
+} from '../utils/util.js';
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-module.exports.getUser = async (req, res) =>{
+export const getUser = async (req, res) =>{
     try{
         const { token } = req.body;
         const ticket = await client.verifyIdToken({

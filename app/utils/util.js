@@ -1,6 +1,6 @@
 // All utils functions
 
-module.exports.findUserByGoogleClientId = async (googleClientId) => {
+export const findUserByGoogleClientId = async (googleClientId) => {
     try {
       const user = await User.findOne({ google_client_id: googleClientId });
       return user;
@@ -10,7 +10,7 @@ module.exports.findUserByGoogleClientId = async (googleClientId) => {
     }
 }
 
-module.exports.getEndDate = (date) => {
+export const getEndDate = (date) => {
   // Split the input date into day, month, and year
   const [day, month, year] = date.split('-').map(Number);
 
@@ -36,7 +36,7 @@ module.exports.getEndDate = (date) => {
 }
 
 
-module.exports.daysPassedSince = (startDateStr) => {
+export const daysPassedSince = (startDateStr) => {
   const startDateParts = startDateStr.split('-');
   const startDate = new Date(`${startDateParts[2]}-${startDateParts[1]}-${startDateParts[0]}`); // Format: yyyy-mm-dd
   const today = new Date();
@@ -50,8 +50,7 @@ module.exports.daysPassedSince = (startDateStr) => {
   return daysPassed;
 }
 
-
-module.exports.filterDateAndBalance = (calendarArray) => {
+export const filterDateAndBalance = (calendarArray) => {
   const filteredArray = calendarArray.map(obj => ({
       date: obj.date,
       balance: obj.balance
@@ -60,7 +59,7 @@ module.exports.filterDateAndBalance = (calendarArray) => {
   return filteredArray;
 }
 
-module.exports.filterCalendarArray = (calendarArray) => {
+export const filterCalendarArray = (calendarArray) => {
   const filteredArray= calendarArray.map(obj => ({
       date: obj.date,
       equity: obj.equity,
@@ -74,7 +73,7 @@ module.exports.filterCalendarArray = (calendarArray) => {
   return filteredArray;
 }
 
-module.exports.getCurBalance = () => {
+export const getCurBalance = () => {
   return new Promise((resolve, reject) => {
     const options = {
       method: 'GET',
@@ -92,7 +91,7 @@ module.exports.getCurBalance = () => {
   });
 }
 
-module.exports.getTodaysPositions = (user) => {
+export const getTodaysPositions = (user) => {
   try {
       const today = new Date();
       const formattedDate = today.toISOString().split('T')[0];
@@ -105,7 +104,7 @@ module.exports.getTodaysPositions = (user) => {
   }
 }
 
-module.exports.findCalendarEntryForToday = (user) => {
+export const findCalendarEntryForToday = (user) => {
   const today = getLocalDate() 
   try {
       const calendarEntry = user.Calendar.find(entry => entry.date === today);
@@ -116,7 +115,7 @@ module.exports.findCalendarEntryForToday = (user) => {
   }
 }
 
-module.exports.getChartData = (securityID, exchangeSeg, instru) => {
+export const getChartData = (securityID, exchangeSeg, instru) => {
   return new Promise((resolve, reject) => {
       const options = {
           method: 'POST',
@@ -140,7 +139,7 @@ module.exports.getChartData = (securityID, exchangeSeg, instru) => {
   });
 }
 
-module.exports.getTradeHistory = (from_date, to_date) => {
+export const getTradeHistory = (from_date, to_date) => {
   const formattedDate = from_date.toISOString().split('T')[0];
   const formattedto_date = to_date.toISOString().split('T')[0];
   const fromDate = '2024-05-13';
@@ -168,7 +167,7 @@ module.exports.getTradeHistory = (from_date, to_date) => {
   });
 }
 
-module.exports.getAllPositions = () => {
+export const getAllPositions = () => {
   return new Promise((resolve, reject) => {
       const options = {
           method: 'GET',
@@ -190,7 +189,7 @@ module.exports.getAllPositions = () => {
 }
 
 
-module.exports.getLocalDayName = () => {
+export const getLocalDayName = () => {
   const currentDate = new Date();
   
   // Options for formatting the date
@@ -199,8 +198,7 @@ module.exports.getLocalDayName = () => {
   // Get the local day name using toLocaleDateString
   return currentDate.toLocaleDateString('en-US', options);
 }
-
-module.exports.getLocalDate = () => {
+export const getLocalDate = () => {
   const currentDate = new Date();
   
   const day = String(currentDate.getDate()).padStart(2, '0');
@@ -210,13 +208,13 @@ module.exports.getLocalDate = () => {
   return `${year}-${month}-${day}`;
 }
 
-module.exports.convertDateFormat = (date) => {
+export const convertDateFormat = (date) => {
   const parts = date.split('-');
   // Rearrange the parts to the desired format (MM-DD-YYYY)
   return `${parts[1]}-${parts[2]}-${parts[0]}`;
 }
 
-module.exports.filterPositionsLastWeek = (positions) => {
+export const filterPositionsLastWeek = (positions) => {
   // Get today's date
   const today = new Date();
 
@@ -233,7 +231,7 @@ module.exports.filterPositionsLastWeek = (positions) => {
   return positionsLastWeek;
 }
 
-module.exports.calculateBrokerage = (productType,transactionType, quantity, pricePerLot, brokerageRate) => {
+export const calculateBrokerage = (productType,transactionType, quantity, pricePerLot, brokerageRate) => {
     
   let  exchangeFees = 0.000495;
   const  sebiChargesRate = 0.000001;
@@ -269,7 +267,7 @@ module.exports.calculateBrokerage = (productType,transactionType, quantity, pric
    return totalCharges
 }
 
-module.exports.addTenYears = (chartObject) => {
+export const addTenYears = (chartObject) => {
   // Copy the original chart object to avoid modifying the original data
   const modifiedChartObject = { ...chartObject };
 
@@ -297,7 +295,7 @@ module.exports.addTenYears = (chartObject) => {
   return modifiedChartObject;
 }  
 
-module.exports.getDateForDashboard = (data) => {
+export const getDateForDashboard = (data) => {
   const date = new Date(data);
 
   // Get day, month, and year
@@ -337,7 +335,7 @@ module.exports.getDateForDashboard = (data) => {
   return formattedDate;
 }
 
-module.exports.getDateObjectFromString = (dateString) => {
+export const getDateObjectFromString = (dateString) => {
   // Split the date string into day, month, and year
   const [day, month, year] = dateString.split('-').map(Number);
 
@@ -345,7 +343,7 @@ module.exports.getDateObjectFromString = (dateString) => {
   return new Date(year, month - 1, day);
 }
 
-module.exports.getFakeChartData = () => {
+export const getFakeChartData = () => {
   const Response =
   {
     "open": [
@@ -2615,7 +2613,7 @@ module.exports.getFakeChartData = () => {
   return Response;
 }
 
-module.exports.generateFakePosition = () => {
+export const generateFakePosition = () => {
   const positionData = [
       {
         "dhanClientId": "string",

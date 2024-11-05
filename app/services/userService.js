@@ -1,4 +1,4 @@
-const { User } = require("../models/User");
+import { User } from "../models/User";
 
 class UserService {
     static async createUser(data) {
@@ -97,4 +97,4 @@ class UserService {
     }
 }
 
-module.exports = UserService;
+export default  UserService;

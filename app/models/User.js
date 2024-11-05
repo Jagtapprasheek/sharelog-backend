@@ -1,7 +1,7 @@
-const mongoose = require('mongoose');
-const { positionSchema } = require('./Position');
-const { holdingSchema } = require('./Holding');
-const { calendarSchema } = require('./Calendar');
+import mongoose from 'mongoose';
+import {positionSchema} from'./Position';
+import {holdingSchema} from'./Holding';
+import {calendarSchema} from './Calendar';
 
 const userSchema = new mongoose.Schema({
     google_client_id:  { type: String, unique: true, required: true },

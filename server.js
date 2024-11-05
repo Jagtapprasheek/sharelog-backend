@@ -1,9 +1,9 @@
-const express = require('express');
+import express from 'express';
 const app = express();
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 require('dotenv').config()
-const bodyParser = require('body-parser');
-const cors = require('cors');
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -19,7 +19,7 @@ const db = mongoose.connection;
 db.on('error', (err) => console.log(err));
 db.once('open', () => console.log("Connected to database"));
 
-const indexRouter = require('./app/routes');
+import indexRouter from './app/routes';
 app.use('/api', indexRouter);
 
 

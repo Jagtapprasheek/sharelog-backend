@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const { audioSchema } = require('./Audio');
-const { chartSchema } = require('./Chart');
+import mongoose from 'mongoose';
+import audioSchema from './Audio';
+import chartSchema from'./Chart';
 
 
 const positionSchema = new mongoose.Schema({

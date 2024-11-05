@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const holdingSchema = new mongoose.Schema({
     securityId: String,

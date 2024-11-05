@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const calendarSchema = new mongoose.Schema({
     securityIds: [String],
